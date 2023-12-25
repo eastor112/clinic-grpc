@@ -1,0 +1,8 @@
+version: v1
+name: buf.build/eastor112/clinic-grpc
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT

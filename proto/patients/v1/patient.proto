@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package patients;
+
+import "google/protobuf/timestamp.proto";
+
+message Patient {
+  int64 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone = 4;
+  string ssn = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+service PatientService {
+  rpc GetPatientByID (PatientRequest) returns (Patient);
+}
+
+message PatientRequest {
+  int64 patient_id = 1;
+}
