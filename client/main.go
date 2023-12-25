@@ -18,11 +18,11 @@ func main() {
 	res, err := client.GetPatientByID(
 		context.Background(),
 		connect.NewRequest(&patientsV1.PatientRequest{
-			PatientId: 1,
+			PatientId: 2,
 		}),
 	)
 	if err != nil {
-		log.Println(err)
+		log.Println("error!!", err)
 		return
 	}
 	log.Println(res.Msg)

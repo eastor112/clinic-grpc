@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 
 	"connectrpc.com/connect"
@@ -19,22 +20,6 @@ import (
 func init() {
 	configs.ConnectToDB()
 }
-
-// func main() {
-
-// 	r := gin.Default()
-// 	r.Use(middlewares.SecretMiddleware())
-
-// 	routes.PersonRouter(r)
-// 	routes.PatientRouter(r)
-
-// 	r.GET("/", func(c *gin.Context) {
-// 		c.JSON(http.StatusOK, gin.H{
-// 			"message": "Hello world from server Go.",
-// 		})
-// 	})
-// 	r.Run()
-// }
 
 const address = "localhost:8080"
 
@@ -65,7 +50,7 @@ func (s *patientServiceServer) GetPatientByID(
 	if result.Error != nil {
 		return nil, result.Error
 	}
-	fmt.Println("HEREEEEEE!!!")
+	log.Printf("Got a request")
 
 	return connect.NewResponse(&patientsv1.PatientResponse{
 		Patient: &patientsv1.Patient{
