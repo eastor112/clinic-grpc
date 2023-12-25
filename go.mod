@@ -3,6 +3,8 @@ module github.com/eastor112/clinic-grpc
 go 1.21.5
 
 require (
+	buf.build/gen/go/eastor112/clinic-grpc/connectrpc/go v1.14.0-20231225224350-bcedf6434326.1
+	buf.build/gen/go/eastor112/clinic-grpc/protocolbuffers/go v1.32.0-20231225224350-bcedf6434326.1
 	connectrpc.com/connect v1.14.0
 	github.com/gin-gonic/gin v1.9.1
 	golang.org/x/net v0.19.0

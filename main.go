@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"connectrpc.com/connect"
@@ -41,6 +42,8 @@ func main() {
 	mux := http.NewServeMux()
 	path, handler := patientsv1connect.NewPatientServiceHandler(&patientServiceServer{})
 	mux.Handle(path, handler)
+	fmt.Println("... Listening on", address)
+
 	http.ListenAndServe(
 		address,
 		h2c.NewHandler(mux, &http2.Server{}),
@@ -62,6 +65,7 @@ func (s *patientServiceServer) GetPatientByID(
 	if result.Error != nil {
 		return nil, result.Error
 	}
+	fmt.Println("HEREEEEEE!!!")
 
 	return connect.NewResponse(&patientsv1.PatientResponse{
 		Patient: &patientsv1.Patient{
