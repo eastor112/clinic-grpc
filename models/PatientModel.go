@@ -8,7 +8,7 @@ import (
 
 type Patient struct {
 	gorm.Model
-	ID        uint
+	ID        int64
 	FirstName string
 	LastName  string
 	Phone     string

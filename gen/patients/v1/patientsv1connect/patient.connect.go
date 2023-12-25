@@ -46,7 +46,7 @@ var (
 
 // PatientServiceClient is a client for the patients.v1.PatientService service.
 type PatientServiceClient interface {
-	GetPatientByID(context.Context, *connect.Request[v1.PatientRequest]) (*connect.Response[v1.Patient], error)
+	GetPatientByID(context.Context, *connect.Request[v1.PatientRequest]) (*connect.Response[v1.PatientResponse], error)
 }
 
 // NewPatientServiceClient constructs a client for the patients.v1.PatientService service. By
@@ -59,7 +59,7 @@ type PatientServiceClient interface {
 func NewPatientServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) PatientServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &patientServiceClient{
-		getPatientByID: connect.NewClient[v1.PatientRequest, v1.Patient](
+		getPatientByID: connect.NewClient[v1.PatientRequest, v1.PatientResponse](
 			httpClient,
 			baseURL+PatientServiceGetPatientByIDProcedure,
 			connect.WithSchema(patientServiceGetPatientByIDMethodDescriptor),
@@ -70,17 +70,17 @@ func NewPatientServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 
 // patientServiceClient implements PatientServiceClient.
 type patientServiceClient struct {
-	getPatientByID *connect.Client[v1.PatientRequest, v1.Patient]
+	getPatientByID *connect.Client[v1.PatientRequest, v1.PatientResponse]
 }
 
 // GetPatientByID calls patients.v1.PatientService.GetPatientByID.
-func (c *patientServiceClient) GetPatientByID(ctx context.Context, req *connect.Request[v1.PatientRequest]) (*connect.Response[v1.Patient], error) {
+func (c *patientServiceClient) GetPatientByID(ctx context.Context, req *connect.Request[v1.PatientRequest]) (*connect.Response[v1.PatientResponse], error) {
 	return c.getPatientByID.CallUnary(ctx, req)
 }
 
 // PatientServiceHandler is an implementation of the patients.v1.PatientService service.
 type PatientServiceHandler interface {
-	GetPatientByID(context.Context, *connect.Request[v1.PatientRequest]) (*connect.Response[v1.Patient], error)
+	GetPatientByID(context.Context, *connect.Request[v1.PatientRequest]) (*connect.Response[v1.PatientResponse], error)
 }
 
 // NewPatientServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -108,6 +108,6 @@ func NewPatientServiceHandler(svc PatientServiceHandler, opts ...connect.Handler
 // UnimplementedPatientServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedPatientServiceHandler struct{}
 
-func (UnimplementedPatientServiceHandler) GetPatientByID(context.Context, *connect.Request[v1.PatientRequest]) (*connect.Response[v1.Patient], error) {
+func (UnimplementedPatientServiceHandler) GetPatientByID(context.Context, *connect.Request[v1.PatientRequest]) (*connect.Response[v1.PatientResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("patients.v1.PatientService.GetPatientByID is not implemented"))
 }

@@ -15,9 +15,13 @@ message Patient {
 }
 
 service PatientService {
-  rpc GetPatientByID (PatientRequest) returns (Patient);
+  rpc GetPatientByID (PatientRequest) returns (PatientResponse);
 }
 
 message PatientRequest {
   int64 patient_id = 1;
+}
+
+message PatientResponse {
+  Patient patient = 1;
 }
