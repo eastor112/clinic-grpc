@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"hospital/controllers"
-	"hospital/middlewares"
+	"github.com/eastor112/clinic-grpc/controllers"
+	"github.com/eastor112/clinic-grpc/middlewares"
 
 	"github.com/gin-gonic/gin"
 )

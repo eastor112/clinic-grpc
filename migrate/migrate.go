@@ -1,8 +1,8 @@
 package main
 
 import (
-	"hospital/configs"
-	"hospital/models"
+	"github.com/eastor112/clinic-grpc/configs"
+	"github.com/eastor112/clinic-grpc/models"
 )
 
 func init() {

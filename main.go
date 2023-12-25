@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	"hospital/configs"
-	"hospital/middlewares"
-	"hospital/routes"
+	"github.com/eastor112/clinic-grpc/configs"
+	"github.com/eastor112/clinic-grpc/middlewares"
+	"github.com/eastor112/clinic-grpc/routes"
 
 	"github.com/gin-gonic/gin"
 )
